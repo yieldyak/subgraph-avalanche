@@ -1,0 +1,29 @@
+type User @entity {
+  id: ID!
+  reinvestCount: BigInt!
+  reinvests: [Reinvest!] @derivedFrom(field: "by")
+}
+
+type Farm @entity {
+  id: ID!
+  name: String!
+  depositToken: Token!
+  rewardToken: Token!
+  reinvests: [Reinvest!] @derivedFrom(field: "farm")
+}
+
+type Reinvest @entity {
+  id: ID!
+  by: User!
+  farm: Farm!
+  ratio: BigDecimal!
+  totalDeposits: BigInt!
+  totalSupply: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Token @entity {
+  id: ID!
+}
