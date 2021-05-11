@@ -5,6 +5,384 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
+    name: x4e42c97EFae0777643938262f43c247b702Ad7c6
+    network: avalanche
+    source:
+      address: '0x4e42c97EFae0777643938262f43c247b702Ad7c6'
+      abi: DexStrategyV4
+      startBlock: 1655590
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x43C1d15C34D73eb6dFD2bf39BC53C0a0b5724b17
+    network: avalanche
+    source:
+      address: '0x43C1d15C34D73eb6dFD2bf39BC53C0a0b5724b17'
+      abi: DexStrategyV4
+      startBlock: 1655588
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xF0c2d1D6A3D7Fb3d1Ddc2468fCF1d3B1AB648DaC
+    network: avalanche
+    source:
+      address: '0xF0c2d1D6A3D7Fb3d1Ddc2468fCF1d3B1AB648DaC'
+      abi: DexStrategyV4
+      startBlock: 1655585
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xB42cD0bea11ad9eC610F2bd5826463Bb93396538
+    network: avalanche
+    source:
+      address: '0xB42cD0bea11ad9eC610F2bd5826463Bb93396538'
+      abi: DexStrategyV4
+      startBlock: 1654864
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x9968f0c68B9D812C226F3d6eb3cd3c958979E1af
+    network: avalanche
+    source:
+      address: '0x9968f0c68B9D812C226F3d6eb3cd3c958979E1af'
+      abi: DexStrategyV4
+      startBlock: 1608214
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x0cAAA919FEeb50029f99b288e43a73c66178C976
+    network: avalanche
+    source:
+      address: '0x0cAAA919FEeb50029f99b288e43a73c66178C976'
+      abi: DexStrategyV4
+      startBlock: 1608184
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x57A6E0CEF1E32BeE5407BDcaB57dE10eEb383aA6
+    network: avalanche
+    source:
+      address: '0x57A6E0CEF1E32BeE5407BDcaB57dE10eEb383aA6'
+      abi: DexStrategyV4
+      startBlock: 1592028
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x0Bd7cdDB6B76eeAA8AAaEC124e7Ffe0d26496D3e
+    network: avalanche
+    source:
+      address: '0x0Bd7cdDB6B76eeAA8AAaEC124e7Ffe0d26496D3e'
+      abi: DexStrategyV4
+      startBlock: 1548220
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xc474e6cAE8b7c7E43b3c69125A7226A4A08a4229
+    network: avalanche
+    source:
+      address: '0xc474e6cAE8b7c7E43b3c69125A7226A4A08a4229'
+      abi: DexStrategyV4
+      startBlock: 1547996
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x3b23E8a535B2a9e4C73f617c1c5A36299b3C57B2
+    network: avalanche
+    source:
+      address: '0x3b23E8a535B2a9e4C73f617c1c5A36299b3C57B2'
+      abi: DexStrategyV4
+      startBlock: 1521818
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x9550593eA20359A4EfeB914C1FFf2d123EC9C091
+    network: avalanche
+    source:
+      address: '0x9550593eA20359A4EfeB914C1FFf2d123EC9C091'
+      abi: DexStrategyV4
+      startBlock: 1521812
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xF947758148e056Cd8096eFD07f536B59f3247206
+    network: avalanche
+    source:
+      address: '0xF947758148e056Cd8096eFD07f536B59f3247206'
+      abi: DexStrategyV4
+      startBlock: 1520602
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xDf98Af02258E7F32A4fEb77c159A42Bd64D204d3
+    network: avalanche
+    source:
+      address: '0xDf98Af02258E7F32A4fEb77c159A42Bd64D204d3'
+      abi: DexStrategyV4
+      startBlock: 1476231
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xfdd8B1444B3A929979d84E2255Ab52cb9F7B5a4C
+    network: avalanche
+    source:
+      address: '0xfdd8B1444B3A929979d84E2255Ab52cb9F7B5a4C'
+      abi: DexStrategyV4
+      startBlock: 1475902
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
     name: x1AD92f75C2740efD143ED666f8dE3eD963b22AD3
     network: avalanche
     source:
@@ -24,8 +402,12 @@ dataSources:
         - name: DexStrategyV4
           file: ./abis/DexStrategyV4.json
       eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x72E332cc6bf00EC48861C51df104770EDf7890B6
@@ -70,8 +452,12 @@ dataSources:
         - name: DexStrategyV4
           file: ./abis/DexStrategyV4.json
       eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x2409E04F96E71Fc931E18196509F130dFE0959a6
@@ -93,8 +479,12 @@ dataSources:
         - name: DexStrategyV4
           file: ./abis/DexStrategyV4.json
       eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xC53DC280dc14F24B21370919d757cF7b296BFd31
@@ -116,8 +506,12 @@ dataSources:
         - name: DexStrategyV4
           file: ./abis/DexStrategyV4.json
       eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xaf985c13836b753445487c99448dA38Bd7774A17
@@ -139,8 +533,12 @@ dataSources:
         - name: DexStrategyV4
           file: ./abis/DexStrategyV4.json
       eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xfDffdf6Dc4FB30BeDE8af0f78D42c5468F37324B
@@ -1414,6 +1812,355 @@ dataSources:
       address: '0x9800F6189EE6849361d8bF4c0cD7a75a3074550d'
       abi: DexStrategyV4
       startBlock: 1113928
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x303DfF9550a1E959A7E6731809A587acc195fD21
+    network: avalanche
+    source:
+      address: '0x303DfF9550a1E959A7E6731809A587acc195fD21'
+      abi: DexStrategyV4
+      startBlock: 707882
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x7A43D565837274eA2f6E6d95F4020871669C13C9
+    network: avalanche
+    source:
+      address: '0x7A43D565837274eA2f6E6d95F4020871669C13C9'
+      abi: DexStrategyV4
+      startBlock: 1369619
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x976EEea238514fd13A4aB3E4cB45EfA17F9426A7
+    network: avalanche
+    source:
+      address: '0x976EEea238514fd13A4aB3E4cB45EfA17F9426A7'
+      abi: DexStrategyV4
+      startBlock: 1369859
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x8D325d788140c391Fcb55A45E19bB4c66Ef87529
+    network: avalanche
+    source:
+      address: '0x8D325d788140c391Fcb55A45E19bB4c66Ef87529'
+      abi: DexStrategyV4
+      startBlock: 1369960
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x908698B561eA14f153dDD1Ee02f99EBE0A4cea0f
+    network: avalanche
+    source:
+      address: '0x908698B561eA14f153dDD1Ee02f99EBE0A4cea0f'
+      abi: DexStrategyV4
+      startBlock: 1400932
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xFC47515433eE291E692958a2D15F99896FAFC0BC
+    network: avalanche
+    source:
+      address: '0xFC47515433eE291E692958a2D15F99896FAFC0BC'
+      abi: DexStrategyV4
+      startBlock: 1400934
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x8C3C86bEA8eD5ACbCE4944deF6731291Eb193C26
+    network: avalanche
+    source:
+      address: '0x8C3C86bEA8eD5ACbCE4944deF6731291Eb193C26'
+      abi: DexStrategyV4
+      startBlock: 1400936
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xfb5Aa7660fDe5013996FD72a193ACCF00212Af32
+    network: avalanche
+    source:
+      address: '0xfb5Aa7660fDe5013996FD72a193ACCF00212Af32'
+      abi: DexStrategyV4
+      startBlock: 1404673
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xA004785b6a53dd1f523d5519b5EFDC619B6b92c5
+    network: avalanche
+    source:
+      address: '0xA004785b6a53dd1f523d5519b5EFDC619B6b92c5'
+      abi: DexStrategyV4
+      startBlock: 1404676
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xFD1F86448b56942C32B954092F2fDBCE91E37Bf6
+    network: avalanche
+    source:
+      address: '0xFD1F86448b56942C32B954092F2fDBCE91E37Bf6'
+      abi: DexStrategyV4
+      startBlock: 1404678
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x90E24A2dfd80F02D01c7B630E8e3199C8A0388D3
+    network: avalanche
+    source:
+      address: '0x90E24A2dfd80F02D01c7B630E8e3199C8A0388D3'
+      abi: DexStrategyV4
+      startBlock: 1413019
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x165FA1023429E266Cd767845E8dE419Ce3abd379
+    network: avalanche
+    source:
+      address: '0x165FA1023429E266Cd767845E8dE419Ce3abd379'
+      abi: DexStrategyV4
+      startBlock: 1413017
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xBD9f16EeE869808bF22823427D1f4a1E7A440E8D
+    network: avalanche
+    source:
+      address: '0xBD9f16EeE869808bF22823427D1f4a1E7A440E8D'
+      abi: DexStrategyV4
+      startBlock: 1413014
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x8Bf6402AfcfE11519947829Af44770Fa44A01949
+    network: avalanche
+    source:
+      address: '0x8Bf6402AfcfE11519947829Af44770Fa44A01949'
+      abi: DexStrategyV4
+      startBlock: 1413011
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: x8F871D05d7AfB9dAffA5Df13A91c74e870e6c31E
+    network: avalanche
+    source:
+      address: '0x8F871D05d7AfB9dAffA5Df13A91c74e870e6c31E'
+      abi: DexStrategyV4
+      startBlock: 1413014
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4

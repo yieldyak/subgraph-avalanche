@@ -27,3 +27,34 @@ type Reinvest @entity {
 type Token @entity {
   id: ID!
 }
+
+type DepositStatus @entity {
+  id: ID!                  # user-farm
+  user: User!
+  farm: Farm!
+  activeDeposit: BigInt!   # Used to explain returns
+  totalDeposits: BigInt!
+  totalWithdraws: BigInt!
+  depositCount: BigInt!
+  withdrawCount: BigInt!
+}
+
+type Deposit @entity {
+  id: ID!
+  by: User!
+  farm: Farm!
+  amount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Withdraw @entity {
+  id: ID!
+  by: User!
+  farm: Farm!
+  amount: BigInt!
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
