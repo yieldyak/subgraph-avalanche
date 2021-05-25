@@ -14,10 +14,14 @@ export function handleDeposit(event: DepositEvent): void {
   depositStatus.totalDeposits = depositStatus.totalDeposits.plus(event.params.amount);
   depositStatus.save()
 
+  let farm = createOrLoadFarm(event);
+  farm.depositTokenBalance = farm.depositTokenBalance.plus(event.params.amount);
+  farm.save();
+
   let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
   let deposit = new Deposit(id);
   deposit.by = createOrLoadUser(event).id;
-  deposit.farm = createOrLoadFarm(event).id;
+  deposit.farm = farm.id;
   deposit.amount = event.params.amount;
   deposit.blockTimestamp = event.block.timestamp;
   deposit.blockNumber = event.block.number;
@@ -37,10 +41,14 @@ export function handleWithdraw(event: WithdrawEvent): void {
   depositStatus.totalWithdraws = depositStatus.totalWithdraws.plus(event.params.amount);
   depositStatus.save()
 
+  let farm = createOrLoadFarm(event);
+  farm.depositTokenBalance = farm.depositTokenBalance.minus(event.params.amount);
+  farm.save();
+
   let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
   let withdraw = new Withdraw(id);
   withdraw.by = createOrLoadUser(event).id;
-  withdraw.farm = createOrLoadFarm(event).id;
+  withdraw.farm = farm.id;
   withdraw.amount = event.params.amount;
   withdraw.blockTimestamp = event.block.timestamp;
   withdraw.blockNumber = event.block.number;
@@ -50,6 +58,11 @@ export function handleWithdraw(event: WithdrawEvent): void {
 
 export function handleReinvest(event: ReinvestEvent): void {
   let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
+
+  let farm = createOrLoadFarm(event);
+  farm.reinvestCount = farm.reinvestCount.plus(BigInt.fromI32(1));
+  farm.depositTokenBalance = event.params.newTotalDeposits;
+  farm.save();
 
   let user = createOrLoadUser(event);
   user.reinvestCount = user.reinvestCount.plus(BigInt.fromI32(1));
@@ -82,6 +95,8 @@ function createOrLoadFarm(event: ethereum.Event): Farm {
     farm.name = farmContract.name();
     farm.depositToken = createOrLoadToken(farmContract.depositToken()).id;
     farm.rewardToken = createOrLoadToken(farmContract.rewardToken()).id;
+    farm.reinvestCount = BigInt.fromI32(0);
+    farm.depositTokenBalance = BigInt.fromI32(0);
   }
   farm.save();
   return farm!;

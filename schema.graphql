@@ -2,14 +2,20 @@ type User @entity {
   id: ID!
   reinvestCount: BigInt!
   reinvests: [Reinvest!] @derivedFrom(field: "by")
+  deposits: [Deposit!] @derivedFrom(field: "by")
+  withdraws: [Withdraw!] @derivedFrom(field: "by")
 }
 
 type Farm @entity {
   id: ID!
   name: String!
   depositToken: Token!
+  depositTokenBalance: BigInt!
   rewardToken: Token!
+  reinvestCount: BigInt!
   reinvests: [Reinvest!] @derivedFrom(field: "farm")
+  deposits: [Deposit!] @derivedFrom(field: "farm")
+  withdraws: [Withdraw!] @derivedFrom(field: "farm")
 }
 
 type Reinvest @entity {
