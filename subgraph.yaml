@@ -5,6 +5,72 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
+    name: x964A0c4f0C03a3d307dF4266e3A73a33FC804dbF
+    network: avalanche
+    source:
+      address: '0x964A0c4f0C03a3d307dF4266e3A73a33FC804dbF'
+      abi: DexStrategyV4
+      startBlock: 2625963
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
+    name: xeD8c2af5c9F7A0fa5AAa0D8F8E78DDCa28eef3D6
+    network: avalanche
+    source:
+      address: '0xeD8c2af5c9F7A0fa5AAa0D8F8E78DDCa28eef3D6'
+      abi: DexStrategyV4
+      startBlock: 2625787
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Farm
+        - Reinvest
+        - Token
+      abis:
+        - name: DexStrategyV4
+          file: ./abis/DexStrategyV4.json
+      eventHandlers:
+        - event: Deposit(indexed address,uint256)
+          handler: handleDeposit
+        - event: Reinvest(uint256,uint256)
+          handler: handleReinvest
+        - event: Withdraw(indexed address,uint256)
+          handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
+      file: ./src/mappings/DexStrategyV4.ts
+  - kind: ethereum/contract
     name: x85D6F430f30B24F5e933cB3F5E52487dEF8F4e75
     network: avalanche
     source:
@@ -30,6 +96,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x77c26728465277510c4E33820a4D3b686F44Ab7E
@@ -57,6 +129,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x5EA465E27F76B084F864addC47F04df8012B376a
@@ -84,6 +162,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xB5B9CE35E6b3d5f8C800F19be5d8a76D9901f6B5
@@ -111,6 +195,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xD3D10b328c6cEe9FD599B11ea1272Fe829409bba
@@ -138,6 +228,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xB18BfB17859C6B90dC0E374fe763A8AfCe25d80c
@@ -165,6 +261,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x0d33E9982B3418064FCCe9115d04c63b2D0ad101
@@ -192,6 +294,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x2f153095049C112dF748c2D2dd8Ede0fA92F6CB7
@@ -219,6 +327,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xfAeD69427E2444263b4C62c630a872A289a54865
@@ -246,6 +360,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x7832928758afD045cE857aFe5b6320466b5c05ed
@@ -273,6 +393,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x7be1a6637D753B16e5FF4E00F917Bb921617d805
@@ -300,6 +426,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xE285a5Cb85297a10fB65EB8FEdbf3900eC242dB8
@@ -327,6 +459,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x6094637C7A1B98Ee136fA1AaFaBd59E7b0B514be
@@ -354,6 +492,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x7175a0271375283bD3DD363018A4db9eD73639E4
@@ -381,6 +525,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xb74dE62EEf4EBb0d02e60BAf280F3C58080ec3C4
@@ -408,6 +558,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x5Da33bCD38FbC3e9632F9F6a198F4f0eF13746b6
@@ -435,6 +591,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x779A387e67aF939A6E8E9cF664f69590763f9b06
@@ -462,6 +624,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x258Ed410926b57dc45915A479F4cefA130e5378B
@@ -489,6 +657,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x1f257A6E8e4873cc32ae4E69d8436Fe70C663fb7
@@ -516,6 +690,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xc0c50aB019d256Ec32023aFdca6868C022977da2
@@ -543,6 +723,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x5F349aF20f87ec815301979fC9C434e2333641bF
@@ -570,6 +756,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x998DB5870F83Fc6a1908125E3d7B85D58C9fA806
@@ -597,6 +789,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x1fc1f7A0943c589EDFf4A3650E40C0821B41901d
@@ -624,6 +822,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x58887009A412Ad52a4FB746D0846585346d83BC0
@@ -651,6 +855,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xb34fE8A87DFEbD5Ab0a03DB73F2d49b903E63DB6
@@ -678,6 +888,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x8c325C11e06619Ba0825010feD6D565b4FddC887
@@ -705,6 +921,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xf1854dCe74e2e354ce6Acb5dAAa77A93690820D4
@@ -732,6 +954,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xB9C5AE872E946bB2b39f1CFBEb2749830cCf20fa
@@ -759,6 +987,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xe867eC0fa1969380960fE544F2A8d5758A26E254
@@ -786,6 +1020,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xbd8B2bC5CaAb6843365084b529905964d0626248
@@ -813,6 +1053,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x562ACEA3c03dBDDc25e2F24bb2685D17Bdb4e62f
@@ -840,6 +1086,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xf487044eD85F2d47A8eAD6b86c834976B8c31736
@@ -867,6 +1119,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xb667121B4D4b6ea5DE4bb61bd3a02E53529BfcCA
@@ -894,6 +1152,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x39F7fCB3aF11B0a274514C581d468739e75f64EC
@@ -921,6 +1185,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xC1F14E9D2b7B88B62e33772b3D14BC6d360d7Cdb
@@ -948,6 +1218,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x8d9153c1976769E2C8774f88648E75C897D1e4B0
@@ -975,6 +1251,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x7867C7a94eF30E26ae855af5d271fB9E52f26c36
@@ -1002,6 +1284,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x9B3365CF1927c29Fa6C1d9bbD214A6bf7b893a06
@@ -1029,6 +1317,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x2cFB60bD96B5215437c3e9D2cAB218fcE29F096C
@@ -1056,6 +1350,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xbFBbEB1Bde34C53533A38cFBb07c37fFA06502a5
@@ -1083,6 +1383,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xe97e85a8cc54980e0370faA196DAE25E43b2aef0
@@ -1110,6 +1416,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x8DF0790E9b9f06AdD676b53136Bd9734e4916D59
@@ -1137,6 +1449,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x86D919752822Fcf060307201808e8f206Ad10324
@@ -1164,6 +1482,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xb2dA66e3245d47b67Ea0d98B8789C614e2e3A76D
@@ -1191,6 +1515,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x7924612c49084b71eaA383C3aeB8A7e7EEb1A63e
@@ -1218,6 +1548,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xC92fAc369925f6f6e88384c2A6f3678977dC6213
@@ -1245,6 +1581,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x81dBdb246Fa1bB98a85C59eAF9face97403b6C19
@@ -1272,6 +1614,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x4e42c97EFae0777643938262f43c247b702Ad7c6
@@ -1299,6 +1647,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x43C1d15C34D73eb6dFD2bf39BC53C0a0b5724b17
@@ -1326,6 +1680,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xF0c2d1D6A3D7Fb3d1Ddc2468fCF1d3B1AB648DaC
@@ -1353,6 +1713,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xB42cD0bea11ad9eC610F2bd5826463Bb93396538
@@ -1380,6 +1746,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x9968f0c68B9D812C226F3d6eb3cd3c958979E1af
@@ -1407,6 +1779,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x0cAAA919FEeb50029f99b288e43a73c66178C976
@@ -1434,6 +1812,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x57A6E0CEF1E32BeE5407BDcaB57dE10eEb383aA6
@@ -1461,6 +1845,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x0Bd7cdDB6B76eeAA8AAaEC124e7Ffe0d26496D3e
@@ -1488,6 +1878,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xc474e6cAE8b7c7E43b3c69125A7226A4A08a4229
@@ -1515,6 +1911,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x3b23E8a535B2a9e4C73f617c1c5A36299b3C57B2
@@ -1542,6 +1944,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x9550593eA20359A4EfeB914C1FFf2d123EC9C091
@@ -1569,6 +1977,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xF947758148e056Cd8096eFD07f536B59f3247206
@@ -1596,6 +2010,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xDf98Af02258E7F32A4fEb77c159A42Bd64D204d3
@@ -1623,6 +2043,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xfdd8B1444B3A929979d84E2255Ab52cb9F7B5a4C
@@ -1650,6 +2076,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x1AD92f75C2740efD143ED666f8dE3eD963b22AD3
@@ -1677,6 +2109,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x72E332cc6bf00EC48861C51df104770EDf7890B6
@@ -1704,6 +2142,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x0345f2b85d238a963965Ef8163ccB93efF81Ff5E
@@ -1731,6 +2175,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x2409E04F96E71Fc931E18196509F130dFE0959a6
@@ -1758,6 +2208,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xC53DC280dc14F24B21370919d757cF7b296BFd31
@@ -1785,6 +2241,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xaf985c13836b753445487c99448dA38Bd7774A17
@@ -1812,6 +2274,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xfDffdf6Dc4FB30BeDE8af0f78D42c5468F37324B
@@ -1839,6 +2307,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x4DD36b27e038E5c479d8BEC440c8f4eE89B6dF5D
@@ -1866,6 +2340,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x89a806347b0814a265Dc17aFc343866b2214dD0F
@@ -1893,6 +2373,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x212dF67Bf1243eE57686883C9222637136bb65E4
@@ -1920,6 +2406,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x3a8D3FBaB8b87473b9B2D78393200B099fA98497
@@ -1947,6 +2439,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xa019F49464FCD206d080060CBbCB1A089441a732
@@ -1974,6 +2472,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x9C36eca9309f0CeB5818da889E47D3c3E2ba9F32
@@ -2001,6 +2505,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xec2258cC4B75aD0a013C7346c07f7470AEa7F0e4
@@ -2028,6 +2538,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xC82ad2Eab7EE0B9226aE884255ca9c1cB33D9E2C
@@ -2055,6 +2571,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xeec2d8bD006e189A0e53819C670b9c08Ee098EB0
@@ -2082,6 +2604,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x829a96AFAcB3f39f740b39fDF575658f88B153f1
@@ -2109,6 +2637,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xA75AF2E0ea2BBDa6Dc6921B4Ee3bb051309d28C9
@@ -2136,6 +2670,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x1E3808e065280E5D773e7D1e9D1f8421C4543b27
@@ -2163,6 +2703,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x855f76F69826b41D663dA8587C199e5Ff4C55325
@@ -2190,6 +2736,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x37A83906a69d6236DBcB4d8257D8f62d1f3BBcD5
@@ -2217,6 +2769,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x0b4a63943e96463b432ec79E7287E63d830BEC51
@@ -2244,6 +2802,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x4a79206B5e1aF8ff4e62183f2f2ff2B4Efb0A9B9
@@ -2271,6 +2835,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xDEfC4b949EA970533FE6F5A75248d4Da534F8873
@@ -2298,6 +2868,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x6BbeA2dbA0Ea15F17C92F84765ae1c3Ab651dF58
@@ -2325,6 +2901,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xfE0521F000d20f0bb9bB2cBa51dC9066468671f9
@@ -2352,6 +2934,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x141bE6e009a0D9a5c0d4e557c0636e97B3de2a7B
@@ -2379,6 +2967,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x485240Fd6e73EC6afd32A7C64707F7AAc11EE151
@@ -2406,6 +3000,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x449Ee12de33E45c5A5BaCBbE0f9DDd276e0ef417
@@ -2413,7 +3013,7 @@ dataSources:
     source:
       address: '0x449Ee12de33E45c5A5BaCBbE0f9DDd276e0ef417'
       abi: DexStrategy
-      startBlock: 674146
+      startBlock: 674144
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -2429,6 +3029,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x882b1F5C8f5438e1C47Ef464A6199C70f20cCeDa
@@ -2456,6 +3060,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xd661a38708E6544F2D32e302e6E893A97Be7314c
@@ -2483,6 +3093,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x50F91f231F8eEca4ff6e0D4f2dABe7d22228D34d
@@ -2510,6 +3126,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xD8399D3db7da1E1Db132DE4E5D3cCF8620dfa2e6
@@ -2537,6 +3159,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x411b1F257E84394A60C7Fb8fbdA9C53A0C441057
@@ -2564,6 +3192,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x18DF163393c6DA3285C2888461b8fD736272E245
@@ -2591,6 +3225,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xded4e24C158b973D4cD309b19295954DD0ad5A23
@@ -2618,6 +3258,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x4CAceCe41645Ae3A78655cdC33320beD00f72437
@@ -2645,6 +3291,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x579cF87201C82B21ba9ae29678B812E07fccf14C
@@ -2672,6 +3324,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xbD42169E094CD8b95513cB3640e9D37418258E17
@@ -2699,6 +3357,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x6b128f920813dF43Ac91D83ed8A79b08C99a41db
@@ -2726,6 +3390,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x7346502437C9F09AB040855f756EdeA2A2aC0912
@@ -2753,6 +3423,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x069E889D729D4D96Dae10C86a4D1F629ad81adEf
@@ -2780,6 +3456,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xFfbE3f2b1fF3f595e3059CCa8a7FcD3eB4D71949
@@ -2807,6 +3489,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x104a9f8C3a1f3bF0814105E1fD457CD7775979cE
@@ -2834,6 +3522,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x1Ad3bE171A6be9f6b9a60C30c5373185bD9c0B6e
@@ -2861,6 +3555,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x2eE33e53eBD75222c7c62F1e9FEB0bc9766136ba
@@ -2888,6 +3588,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xf752325D33f748115660B8661ab7DE10cfd1997C
@@ -2915,6 +3621,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x197e2AE97a783b9a7958eafd01e2467B875989d7
@@ -2942,6 +3654,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x2521597A67DbA56932358F0a67f196BA0cD33053
@@ -2969,6 +3687,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x6d76d0a8AD4F2325C6f4286DD3a40c1cd3B817dE
@@ -2996,6 +3720,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xaa22703AF4a6575fEB316f078bdc584A94FdE108
@@ -3023,6 +3753,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x1a7d36D12e12ABfA91e8da437bDa4c86657163e5
@@ -3050,6 +3786,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x06404FC9C69F8333DC24D4C856E2c8Db7983EB8a
@@ -3077,6 +3819,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x00508fD84E2aCA19B8aF38C2c59171971D97495b
@@ -3104,6 +3852,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xA544b965C2a05b97C44f3126cec916332aFb3175
@@ -3131,6 +3885,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x06Fd3eceE685cA5717c814dc7a790641E98aD9c7
@@ -3158,6 +3918,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x69293F1f9F4ad45ef9295f94ccaED0C045466214
@@ -3185,6 +3951,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x007A0f7C4CAe14415dbCAC83da92d4c01f7601ED
@@ -3212,6 +3984,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x8054fABa5fC1b8523A0c2fb54845C2Ec3326B347
@@ -3239,6 +4017,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xb373a54f7F773a99feBe49F2C5dB11756574f0CE
@@ -3266,6 +4050,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xe51d794d7822e5A78bA681A69294a31BF2117b94
@@ -3293,6 +4083,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x206D15CB7DA413C0E662f284e00f907f51999a40
@@ -3320,6 +4116,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x9800F6189EE6849361d8bF4c0cD7a75a3074550d
@@ -3347,6 +4149,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x303DfF9550a1E959A7E6731809A587acc195fD21
@@ -3374,6 +4182,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x7A43D565837274eA2f6E6d95F4020871669C13C9
@@ -3401,6 +4215,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x976EEea238514fd13A4aB3E4cB45EfA17F9426A7
@@ -3428,6 +4248,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x8D325d788140c391Fcb55A45E19bB4c66Ef87529
@@ -3455,6 +4281,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x908698B561eA14f153dDD1Ee02f99EBE0A4cea0f
@@ -3482,6 +4314,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xFC47515433eE291E692958a2D15F99896FAFC0BC
@@ -3509,6 +4347,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x8C3C86bEA8eD5ACbCE4944deF6731291Eb193C26
@@ -3536,6 +4380,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xfb5Aa7660fDe5013996FD72a193ACCF00212Af32
@@ -3563,6 +4413,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xA004785b6a53dd1f523d5519b5EFDC619B6b92c5
@@ -3590,6 +4446,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xFD1F86448b56942C32B954092F2fDBCE91E37Bf6
@@ -3617,6 +4479,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x90E24A2dfd80F02D01c7B630E8e3199C8A0388D3
@@ -3644,6 +4512,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x165FA1023429E266Cd767845E8dE419Ce3abd379
@@ -3671,6 +4545,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xBD9f16EeE869808bF22823427D1f4a1E7A440E8D
@@ -3698,6 +4578,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x8Bf6402AfcfE11519947829Af44770Fa44A01949
@@ -3725,6 +4611,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x8F871D05d7AfB9dAffA5Df13A91c74e870e6c31E
@@ -3752,6 +4644,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x20afdEf84D1E87D9BfD8086F7269183E12C712E2
@@ -3779,6 +4677,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xaa21128578043C10c5C50BFF1011879c5188dDB2
@@ -3806,6 +4710,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xC2387b6AB5B75aacD6A4A94e44f8402f1E8AFdc2
@@ -3833,6 +4743,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xBA78660BCa43b5a692c632c2A02ff329701DcbF1
@@ -3860,6 +4776,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x0bc2Fb2d9Ba486cBF9e6192f982023f72E80f96F
@@ -3887,6 +4809,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x1817fE376740b53CAe73224B7F0a57F23DD4C9b5
@@ -3914,6 +4842,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xF0BDE208A05CC0a056B5FAE1a78212Adf7A4AFfe
@@ -3941,6 +4875,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xaa9e134D3f9C802f099c53A0C0195373e34d92F7
@@ -3968,6 +4908,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xC0787Fd12249451763be576cf73621f3aF61ebBD
@@ -3995,6 +4941,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x43801E030AFbdFD9A30dA3E5321DD6B609083BCB
@@ -4022,6 +4974,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: xca0803B898F64E3a990998a79Ad874c1880bA346
@@ -4049,6 +5007,12 @@ dataSources:
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)
           handler: handleWithdraw
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateDevFee(uint256,uint256)
+          handler: handleUpdateDevFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategyV4.ts
   - kind: ethereum/contract
     name: x75E302c0F29f75813a1DBEB9fCADfdeE48ebE362
@@ -4072,6 +5036,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x6eDA40218604b9aBE4DC40d68a23A86f1F50B66C
@@ -4095,6 +5063,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x241f66d7aE5053b63367BB083BA7d6c364ff4987
@@ -4118,6 +5090,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: xB58535A99e2D615df6Ff00AD091D01310Daabda3
@@ -4141,6 +5117,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: xC9cD088fD5C17d5cbFd1ff331fa6A48F2f5D9Cb1
@@ -4164,6 +5144,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: xC47c5050E1f8e45a6741613E29a303D7cc106afF
@@ -4187,6 +5171,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x49e01Ade31690D286C5E820a8DAA4412125c7E7a
@@ -4210,6 +5198,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x7f3BB8dB336ff50120E290e5C8eC78B20f619D01
@@ -4233,6 +5225,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: xfd410034f88B99E4BeE8Bd7B51Fa323B6678Bf73
@@ -4256,6 +5252,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x8b3df85620180bd6446fB295f29C62aF0C3054C5
@@ -4279,6 +5279,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x8D35BEB9e8750959c3520d202b589aB78C366D59
@@ -4302,6 +5306,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x6ea142f55aE733eeaEef5fEA34d4312478c762e5
@@ -4325,6 +5333,10 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts
   - kind: ethereum/contract
     name: x456A68EeC203a35A8fa1D9c7Bf5797909D1cee04
@@ -4348,4 +5360,8 @@ dataSources:
       eventHandlers:
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
+        - event: UpdateAdminFee(uint256,uint256)
+          handler: handleUpdateAdminFee
+        - event: UpdateReinvestReward(uint256,uint256)
+          handler: handleUpdateReinvestReward
       file: ./src/mappings/DexStrategy.ts

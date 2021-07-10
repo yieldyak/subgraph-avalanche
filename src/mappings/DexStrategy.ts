@@ -4,8 +4,22 @@ import {
   Deposit as DepositEvent,
   Reinvest as ReinvestEvent,
   Withdraw as WithdrawEvent,
+  UpdateAdminFee as UpdateAdminFeeEvent,
+  UpdateReinvestReward as UpdateReinvestRewardEvent
 } from '../../generated/DexStrategy/DexStrategy'
 import { User, Farm, Token, Reinvest, Deposit, Withdraw, DepositStatus } from '../../generated/schema'
+
+export function handleUpdateAdminFee(event: UpdateAdminFeeEvent): void {
+  let farm = createOrLoadFarm(event);
+  farm.adminFee = event.params.newValue;
+  farm.save();
+}
+
+export function handleUpdateReinvestReward(event: UpdateReinvestRewardEvent): void {
+  let farm = createOrLoadFarm(event);
+  farm.reinvestFee = event.params.newValue;
+  farm.save();
+}
 
 export function handleDeposit(event: DepositEvent): void {}
 export function handleWithdraw(event: WithdrawEvent): void {}
@@ -39,7 +53,7 @@ export function handleReinvest(event: ReinvestEvent): void {
   reinvest.save();
 }
 
-function createOrLoadFarm(event: ReinvestEvent): Farm {
+function createOrLoadFarm(event: ethereum.Event): Farm {
   let id = event.address.toHexString();
   let farm = Farm.load(id);
   if (farm == null) {
@@ -49,6 +63,9 @@ function createOrLoadFarm(event: ReinvestEvent): Farm {
     farm.name = farmContract.name();
     farm.depositToken = createOrLoadToken(farmContract.lpToken()).id;
     farm.rewardToken = createOrLoadToken(farmContract.rewardToken()).id;
+    farm.adminFee = farmContract.ADMIN_FEE_BIPS();
+    farm.devFee = BigInt.fromI32(0);
+    farm.reinvestFee = farmContract.REINVEST_REWARD_BIPS();
     farm.reinvestCount = BigInt.fromI32(0);
     farm.depositTokenBalance = BigInt.fromI32(0);
   }

@@ -12,6 +12,9 @@ type Farm @entity {
   depositToken: Token!
   depositTokenBalance: BigInt!
   rewardToken: Token!
+  adminFee: BigInt!
+  devFee: BigInt!
+  reinvestFee: BigInt!
   reinvestCount: BigInt!
   reinvests: [Reinvest!] @derivedFrom(field: "farm")
   deposits: [Deposit!] @derivedFrom(field: "farm")
