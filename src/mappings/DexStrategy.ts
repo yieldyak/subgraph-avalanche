@@ -21,8 +21,54 @@ export function handleUpdateReinvestReward(event: UpdateReinvestRewardEvent): vo
   farm.save();
 }
 
-export function handleDeposit(event: DepositEvent): void {}
-export function handleWithdraw(event: WithdrawEvent): void {}
+export function handleDeposit(event: DepositEvent): void {
+  let depositStatus = createOrLoadDepositStatus(event);
+  depositStatus.activeDeposit = depositStatus.activeDeposit.plus(event.params.amount);
+  depositStatus.depositCount = depositStatus.depositCount.plus(BigInt.fromI32(1));
+  depositStatus.totalDeposits = depositStatus.totalDeposits.plus(event.params.amount);
+  depositStatus.save();
+
+  let farm = createOrLoadFarm(event);
+  farm.depositTokenBalance = farm.depositTokenBalance.plus(event.params.amount);
+  farm.save();
+
+  let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
+  let deposit = new Deposit(id);
+  deposit.by = createOrLoadUser(event).id;
+  deposit.farm = farm.id;
+  deposit.amount = event.params.amount;
+  deposit.blockTimestamp = event.block.timestamp;
+  deposit.blockNumber = event.block.number;
+  deposit.transactionHash = event.transaction.hash;
+  deposit.save();
+}
+
+export function handleWithdraw(event: WithdrawEvent): void {
+  let depositStatus = createOrLoadDepositStatus(event);
+  if (depositStatus.activeDeposit.lt(event.params.amount)) {
+    depositStatus.activeDeposit = BigInt.fromI32(0);
+  }
+  else {
+    depositStatus.activeDeposit = depositStatus.activeDeposit.minus(event.params.amount);
+  }
+  depositStatus.withdrawCount = depositStatus.withdrawCount.plus(BigInt.fromI32(1));
+  depositStatus.totalWithdraws = depositStatus.totalWithdraws.plus(event.params.amount);
+  depositStatus.save()
+
+  let farm = createOrLoadFarm(event);
+  farm.depositTokenBalance = farm.depositTokenBalance.minus(event.params.amount);
+  farm.save();
+
+  let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
+  let withdraw = new Withdraw(id);
+  withdraw.by = createOrLoadUser(event).id;
+  withdraw.farm = farm.id;
+  withdraw.amount = event.params.amount;
+  withdraw.blockTimestamp = event.block.timestamp;
+  withdraw.blockNumber = event.block.number;
+  withdraw.transactionHash = event.transaction.hash;
+  withdraw.save();
+}
 
 export function handleReinvest(event: ReinvestEvent): void {
   let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
@@ -82,7 +128,7 @@ function createOrLoadToken(id: Address): Token {
   return token!;
 }
 
-function createOrLoadUser(event: ReinvestEvent): User {
+function createOrLoadUser(event: ethereum.Event): User {
   let id = event.transaction.from.toHexString();
   let user = User.load(id);
   if (user == null) {
