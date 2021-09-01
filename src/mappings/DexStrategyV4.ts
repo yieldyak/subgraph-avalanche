@@ -91,7 +91,8 @@ export function handleReinvest(event: ReinvestEvent): void {
 
   let reinvest = new Reinvest(id);
   reinvest.by = user.id;
-  reinvest.farm = createOrLoadFarm(event).id;
+  reinvest.farm = farm.id;
+  reinvest.reinvestCount = farm.reinvestCount;
   reinvest.blockTimestamp = event.block.timestamp;
   reinvest.blockNumber = event.block.number;
   reinvest.totalDeposits = event.params.newTotalDeposits;

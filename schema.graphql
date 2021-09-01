@@ -26,6 +26,7 @@ type Reinvest @entity {
   by: User!
   farm: Farm!
   ratio: BigDecimal!
+  reinvestCount: BigInt!
   totalDeposits: BigInt!
   totalSupply: BigInt!
   blockNumber: BigInt!
