@@ -8452,12 +8452,8 @@ dataSources:
         - name: DexStrategy
           file: ./abis/DexStrategy.json
       eventHandlers:
-        - event: Deposit(address,uint256)
-          handler: handleDeposit
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
-        - event: Withdraw(address,uint256)
-          handler: handleWithdraw
         - event: UpdateAdminFee(uint256,uint256)
           handler: handleUpdateAdminFee
         - event: UpdateReinvestReward(uint256,uint256)
