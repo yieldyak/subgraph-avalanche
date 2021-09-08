@@ -4,20 +4,25 @@
   "version": "0.1.0",
   "scripts": {
     "build-contract": "solc contracts/Gravity.sol --abi -o abis --overwrite && solc contracts/Gravity.sol --bin -o bin --overwrite",
+    
     "create" : "yarn create:full && yarn create:light",
     "create-local" : "yarn create-local:full && yarn create-local:light",
     "create:full": "yarn mustache:full && graph create yieldyak/reinvest-tracker --node https://api.thegraph.com/deploy/",
     "create-local:full": "yarn mustache:full && graph create yieldyak/reinvest-tracker --node http://127.0.0.1:8020",
     "create:light": "yarn mustache:light && graph create yieldyak/reinvest-light --node https://api.thegraph.com/deploy/",
     "create-local:light": "yarn mustache:light && graph create yieldyak/reinvest-light --node http://127.0.0.1:8020",
+    
     "codegen": "graph codegen",
     "build": "graph build",
+
     "deploy":"yarn deploy:full && yarn deploy:light",
     "deploy-local":"yarn deploy:full && yarn deploy:light",
     "deploy:full": "yarn mustache:full && graph deploy yieldyak/reinvest-tracker --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "deploy-local:full": "yarn mustache:full && graph deploy yieldyak/reinvest-tracker --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
     "deploy:light": "yarn mustache:light && graph deploy yieldyak/reinvest-light --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "deploy-local:light": "yarn mustache:light && graph deploy yieldyak/reinvest-light --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "deploy-liboutech:light" : "mustache:light && graph deploy liboutech/reinvest-light --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+
     "mustache:full": "mustache subgraph_data.json subgraph.yaml.mustache > subgraph.yaml",
     "mustache:light" : "node mustache.js"
   },

@@ -1,9 +1,13 @@
 var fs = require('fs');
+const { argv } = require('process');
 const Web3 = require('web3');
 
+let numberOfBlocks = 100000;
 
-
-const numberOfBlock = 100;
+if(argv.length >= 3 && !isNaN(argv[2])){
+    numberOfBlocks = Number(argv[2]);
+}
+console.log(numberOfBlocks);
 
 async function writeSubgraphYaml(){
     var web3 = new Web3('https://api.avax.network/ext/bc/C/rpc');
@@ -13,7 +17,7 @@ async function writeSubgraphYaml(){
     var jsonData = fs.readFileSync('./subgraph_data.json');
     var data = JSON.parse(jsonData);
     for(let i = 0; i< data.datasources.length; i++){
-        data.datasources[i].startBlock = blockNumber - numberOfBlock;  
+        data.datasources[i].startBlock = blockNumber - numberOfBlocks;  
     }    
     var template = fs.readFileSync('subgraph.yaml.mustache','utf8');    
     var result = mustache.render(template, data);
