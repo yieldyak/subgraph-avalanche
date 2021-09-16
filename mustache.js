@@ -17,7 +17,7 @@ async function writeSubgraphYaml(){
     var jsonData = fs.readFileSync('./subgraph_data.json');
     var data = JSON.parse(jsonData);
     for(let i = 0; i< data.datasources.length; i++){
-        data.datasources[i].startBlock = blockNumber - numberOfBlocks;  
+        data.datasources[i].startBlock = blockNumber - numberOfBlocks > data.datasources[i].startBlock ? blockNumber - numberOfBlocks : data.datasources[i].startBlock;
     }    
     var template = fs.readFileSync('subgraph.yaml.mustache','utf8');    
     var result = mustache.render(template, data);
