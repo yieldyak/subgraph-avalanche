@@ -67,6 +67,40 @@ export class User extends Entity {
       this.set("reinvests", Value.fromStringArray(value as Array<string>));
     }
   }
+
+  get deposits(): Array<string> | null {
+    let value = this.get("deposits");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set deposits(value: Array<string> | null) {
+    if (value === null) {
+      this.unset("deposits");
+    } else {
+      this.set("deposits", Value.fromStringArray(value as Array<string>));
+    }
+  }
+
+  get withdraws(): Array<string> | null {
+    let value = this.get("withdraws");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set withdraws(value: Array<string> | null) {
+    if (value === null) {
+      this.unset("withdraws");
+    } else {
+      this.set("withdraws", Value.fromStringArray(value as Array<string>));
+    }
+  }
 }
 
 export class Farm extends Entity {
@@ -117,6 +151,15 @@ export class Farm extends Entity {
     this.set("depositToken", Value.fromString(value));
   }
 
+  get depositTokenBalance(): BigInt {
+    let value = this.get("depositTokenBalance");
+    return value.toBigInt();
+  }
+
+  set depositTokenBalance(value: BigInt) {
+    this.set("depositTokenBalance", Value.fromBigInt(value));
+  }
+
   get rewardToken(): string {
     let value = this.get("rewardToken");
     return value.toString();
@@ -124,6 +167,42 @@ export class Farm extends Entity {
 
   set rewardToken(value: string) {
     this.set("rewardToken", Value.fromString(value));
+  }
+
+  get adminFee(): BigInt {
+    let value = this.get("adminFee");
+    return value.toBigInt();
+  }
+
+  set adminFee(value: BigInt) {
+    this.set("adminFee", Value.fromBigInt(value));
+  }
+
+  get devFee(): BigInt {
+    let value = this.get("devFee");
+    return value.toBigInt();
+  }
+
+  set devFee(value: BigInt) {
+    this.set("devFee", Value.fromBigInt(value));
+  }
+
+  get reinvestFee(): BigInt {
+    let value = this.get("reinvestFee");
+    return value.toBigInt();
+  }
+
+  set reinvestFee(value: BigInt) {
+    this.set("reinvestFee", Value.fromBigInt(value));
+  }
+
+  get reinvestCount(): BigInt {
+    let value = this.get("reinvestCount");
+    return value.toBigInt();
+  }
+
+  set reinvestCount(value: BigInt) {
+    this.set("reinvestCount", Value.fromBigInt(value));
   }
 
   get reinvests(): Array<string> | null {
@@ -140,6 +219,40 @@ export class Farm extends Entity {
       this.unset("reinvests");
     } else {
       this.set("reinvests", Value.fromStringArray(value as Array<string>));
+    }
+  }
+
+  get deposits(): Array<string> | null {
+    let value = this.get("deposits");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set deposits(value: Array<string> | null) {
+    if (value === null) {
+      this.unset("deposits");
+    } else {
+      this.set("deposits", Value.fromStringArray(value as Array<string>));
+    }
+  }
+
+  get withdraws(): Array<string> | null {
+    let value = this.get("withdraws");
+    if (value === null || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toStringArray();
+    }
+  }
+
+  set withdraws(value: Array<string> | null) {
+    if (value === null) {
+      this.unset("withdraws");
+    } else {
+      this.set("withdraws", Value.fromStringArray(value as Array<string>));
     }
   }
 }
@@ -199,6 +312,15 @@ export class Reinvest extends Entity {
 
   set ratio(value: BigDecimal) {
     this.set("ratio", Value.fromBigDecimal(value));
+  }
+
+  get reinvestCount(): BigInt {
+    let value = this.get("reinvestCount");
+    return value.toBigInt();
+  }
+
+  set reinvestCount(value: BigInt) {
+    this.set("reinvestCount", Value.fromBigInt(value));
   }
 
   get totalDeposits(): BigInt {
@@ -275,5 +397,269 @@ export class Token extends Entity {
 
   set id(value: string) {
     this.set("id", Value.fromString(value));
+  }
+}
+
+export class DepositStatus extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save DepositStatus entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save DepositStatus entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("DepositStatus", id.toString(), this);
+  }
+
+  static load(id: string): DepositStatus | null {
+    return store.get("DepositStatus", id) as DepositStatus | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get user(): string {
+    let value = this.get("user");
+    return value.toString();
+  }
+
+  set user(value: string) {
+    this.set("user", Value.fromString(value));
+  }
+
+  get farm(): string {
+    let value = this.get("farm");
+    return value.toString();
+  }
+
+  set farm(value: string) {
+    this.set("farm", Value.fromString(value));
+  }
+
+  get activeDeposit(): BigInt {
+    let value = this.get("activeDeposit");
+    return value.toBigInt();
+  }
+
+  set activeDeposit(value: BigInt) {
+    this.set("activeDeposit", Value.fromBigInt(value));
+  }
+
+  get totalDeposits(): BigInt {
+    let value = this.get("totalDeposits");
+    return value.toBigInt();
+  }
+
+  set totalDeposits(value: BigInt) {
+    this.set("totalDeposits", Value.fromBigInt(value));
+  }
+
+  get totalWithdraws(): BigInt {
+    let value = this.get("totalWithdraws");
+    return value.toBigInt();
+  }
+
+  set totalWithdraws(value: BigInt) {
+    this.set("totalWithdraws", Value.fromBigInt(value));
+  }
+
+  get depositCount(): BigInt {
+    let value = this.get("depositCount");
+    return value.toBigInt();
+  }
+
+  set depositCount(value: BigInt) {
+    this.set("depositCount", Value.fromBigInt(value));
+  }
+
+  get withdrawCount(): BigInt {
+    let value = this.get("withdrawCount");
+    return value.toBigInt();
+  }
+
+  set withdrawCount(value: BigInt) {
+    this.set("withdrawCount", Value.fromBigInt(value));
+  }
+}
+
+export class Deposit extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Deposit entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Deposit entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Deposit", id.toString(), this);
+  }
+
+  static load(id: string): Deposit | null {
+    return store.get("Deposit", id) as Deposit | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get by(): string {
+    let value = this.get("by");
+    return value.toString();
+  }
+
+  set by(value: string) {
+    this.set("by", Value.fromString(value));
+  }
+
+  get farm(): string {
+    let value = this.get("farm");
+    return value.toString();
+  }
+
+  set farm(value: string) {
+    this.set("farm", Value.fromString(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+
+  get blockTimestamp(): BigInt {
+    let value = this.get("blockTimestamp");
+    return value.toBigInt();
+  }
+
+  set blockTimestamp(value: BigInt) {
+    this.set("blockTimestamp", Value.fromBigInt(value));
+  }
+
+  get transactionHash(): Bytes {
+    let value = this.get("transactionHash");
+    return value.toBytes();
+  }
+
+  set transactionHash(value: Bytes) {
+    this.set("transactionHash", Value.fromBytes(value));
+  }
+}
+
+export class Withdraw extends Entity {
+  constructor(id: string) {
+    super();
+    this.set("id", Value.fromString(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id !== null, "Cannot save Withdraw entity without an ID");
+    assert(
+      id.kind == ValueKind.STRING,
+      "Cannot save Withdraw entity with non-string ID. " +
+        'Considering using .toHex() to convert the "id" to a string.'
+    );
+    store.set("Withdraw", id.toString(), this);
+  }
+
+  static load(id: string): Withdraw | null {
+    return store.get("Withdraw", id) as Withdraw | null;
+  }
+
+  get id(): string {
+    let value = this.get("id");
+    return value.toString();
+  }
+
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
+  }
+
+  get by(): string {
+    let value = this.get("by");
+    return value.toString();
+  }
+
+  set by(value: string) {
+    this.set("by", Value.fromString(value));
+  }
+
+  get farm(): string {
+    let value = this.get("farm");
+    return value.toString();
+  }
+
+  set farm(value: string) {
+    this.set("farm", Value.fromString(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
+  }
+
+  get blockNumber(): BigInt {
+    let value = this.get("blockNumber");
+    return value.toBigInt();
+  }
+
+  set blockNumber(value: BigInt) {
+    this.set("blockNumber", Value.fromBigInt(value));
+  }
+
+  get blockTimestamp(): BigInt {
+    let value = this.get("blockTimestamp");
+    return value.toBigInt();
+  }
+
+  set blockTimestamp(value: BigInt) {
+    this.set("blockTimestamp", Value.fromBigInt(value));
+  }
+
+  get transactionHash(): Bytes {
+    let value = this.get("transactionHash");
+    return value.toBytes();
+  }
+
+  set transactionHash(value: Bytes) {
+    this.set("transactionHash", Value.fromBytes(value));
   }
 }
