@@ -2,7 +2,7 @@ var fs = require('fs');
 const { argv } = require('process');
 const Web3 = require('web3');
 
-let numberOfBlocks = 100000;
+let numberOfBlocks = 250000;
 
 if(argv.length >= 3 && !isNaN(argv[2])){
     numberOfBlocks = Number(argv[2]);
