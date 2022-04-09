@@ -3,25 +3,19 @@
   "license": "MIT",
   "version": "0.1.0",
   "scripts": {
-    "build-and-deploy:full" : "yarn mustache:full && yarn codegen && yarn build && yarn deploy:full",
-    "build-and-deploy:light" : "yarn mustache:light && yarn codegen && yarn build && yarn deploy:light",
-    "build-and-deploy:liboutech" : "yarn mustache:light && yarn codegen && yarn build && yarn deploy-liboutech:light",
-
+    "build-and-deploy:full": "yarn mustache:full && yarn codegen && yarn build && yarn deploy:full",
+    "build-and-deploy:liboutech": "yarn mustache:light && yarn codegen && yarn build && yarn deploy-liboutech:light",
     "build-contract": "solc contracts/Gravity.sol --abi -o abis --overwrite && solc contracts/Gravity.sol --bin -o bin --overwrite",
-    
     "codegen": "graph codegen",
     "build": "graph build",
-
     "deploy:full": "graph deploy yieldyak/reinvest-tracker --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy:light": "graph deploy yieldyak/reinvest-light --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy-liboutech:light" : "graph deploy liboutech/reinvest-light --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-
+    "deploy-liboutech:light": "graph deploy liboutech/reinvest-light --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "mustache:full": "mustache subgraph_data.json subgraph.yaml.mustache > subgraph.yaml",
-    "mustache:light" : "node mustache.js"
+    "mustache:light": "node mustache.js"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.20.0",
-    "@graphprotocol/graph-ts": "^0.20.0"
+    "@graphprotocol/graph-cli": "^0.29.0",
+    "@graphprotocol/graph-ts": "^0.26.0"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
