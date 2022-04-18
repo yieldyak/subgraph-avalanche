@@ -22,17 +22,29 @@ dataSources:
       apiVersion: 0.0.5
       language: wasm/assemblyscript
       entities:
-        - User
-        - Farm
-        - Reinvest
         - Token
+        - RewardToken
+        - YieldAggregator
+        - UsageMetricsDailySnapshot
+        - FinancialsDailySnapshot
+        - VaultFee
+        - Vault
+        - VaultDailySnapshot
+        - Deposit
+        - Withdraw
+        - Account
+        - DailyActiveAccount
       abis:
+        - name: RewardToken
+          file: ./abis/RewardToken.json
         - name: {{abi}}
           file: ./abis/{{abi}}.json
       eventHandlers:
         {{#isDexStrategyV4}}
         - event: Deposit(indexed address,uint256)
           handler: handleDeposit
+        - event: Recovered(address,uint256)
+          handler: handleRecovered
         - event: Reinvest(uint256,uint256)
           handler: handleReinvest
         - event: Withdraw(indexed address,uint256)

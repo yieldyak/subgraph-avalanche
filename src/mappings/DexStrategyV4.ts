@@ -1,14 +1,169 @@
 import { Address, BigInt, BigDecimal, ethereum } from '@graphprotocol/graph-ts'
 import { 
-  DexStrategyV4,
   Deposit as DepositEvent,
+  Recovered as RecoveredEvent,
   Reinvest as ReinvestEvent,
   Withdraw as WithdrawEvent,
   UpdateAdminFee as UpdateAdminFeeEvent,
   UpdateDevFee as UpdateDevFeeEvent,
   UpdateReinvestReward as UpdateReinvestRewardEvent
 } from '../../generated/DexStrategyV4/DexStrategyV4'
-import { User, Farm, Token, Reinvest, Deposit, Withdraw, DepositStatus } from '../../generated/schema'
+import { Token
+  ,RewardToken
+  ,YieldAggregator
+  ,UsageMetricsDailySnapshot
+  ,FinancialsDailySnapshot
+  ,VaultFee
+  ,Vault
+  ,VaultDailySnapshot
+  ,Deposit
+  ,Withdraw
+  ,Account
+  ,DailyActiveAccount } from '../../generated/schema'
+
+  import { DexStrategyV4 } from "../../generated/DexStrategyV4/DexStrategyV4"
+  
+  export function handleDeposit(event: DepositEvent): void {
+
+    let transactionHash = event.transaction.hash;
+    let logIndex = event.logIndex;
+    let deposit = Deposit.load(transactionHash.toHexString().concat("-").concat(logIndex.toHexString()))
+    if (deposit == null) {
+      deposit = new Deposit(transactionHash.toHexString().concat("-").concat(logIndex.toHexString()))
+    }
+    deposit.hash = event.transaction.hash.toHexString();
+    deposit.logIndex = event.logIndex;
+    deposit.to = event.transaction.to.toHexString();
+    deposit.from = event.transaction.from.toHexString();
+    deposit.blockNumber = event.block.number;
+    deposit.timestamp = event.block.timestamp;
+    deposit.amount = event.params.amount;
+
+    let dexStrategyV4Contract = DexStrategyV4.bind(event.transaction.to)
+    let ownerAddress = dexStrategyV4Contract.owner();
+    let protocol = defineProtocol(ownerAddress);
+    deposit.protocol =  protocol.id;
+
+    let token = defineToken(event.transaction.to);
+
+    deposit.asset = token.id;
+
+  // " Amount of token deposited in USD "
+  // amountUSD: BigDecimal!
+
+    let defineVault = defineVault(event.transaction.to, event.block.timestamp, event.block.number,);
+
+  " The vault involving this transaction "
+  vault: Vault!
+    deposit.save();
+  }
+
+function defineProtocol(ownerAddress: Address): YieldAggregator {
+  let protocol = YieldAggregator.load(ownerAddress.toHexString())
+  if (protocol == null) {
+    protocol = new YieldAggregator(ownerAddress.toHexString())
+  }
+
+  protocol.name = "Yield Yak"
+  protocol.slug = "yak"
+  protocol.schemaVersion = "1.0.0"
+  protocol.subgraphVersion = "1.0.0"
+  protocol.methodologyVersion = "1.0.0"
+  protocol.network = "AVALANCHE"
+  protocol.type = "YIELD"
+
+  protocol.save()
+
+  return protocol
+}
+
+function defineToken(contractAddress: Address): Token {
+  let dexStrategyV4Contract = DexStrategyV4.bind(contractAddress)
+  let token = Token.load(contractAddress.toHexString())
+  if (token == null) {
+    token = new Token(contractAddress.toHexString())
+    token.name = dexStrategyV4Contract.name();
+    token.symbol = dexStrategyV4Contract.symbol();
+    token.decimals = dexStrategyV4Contract.decimals();
+  }
+  token.save()
+
+  return token
+}
+
+function defineToken(contractAddress: Address): Token {
+  let dexStrategyV4Contract = DexStrategyV4.bind(contractAddress)
+  let token = Token.load(contractAddress.toHexString())
+  if (token == null) {
+    token = new Token(contractAddress.toHexString())
+    token.name = dexStrategyV4Contract.name();
+    token.symbol = dexStrategyV4Contract.symbol();
+    token.decimals = dexStrategyV4Contract.decimals();
+  }
+  token.save()
+
+  return token
+}
+
+function defineVault(contractAddress: Address, timestamp: BigInt, blockNumber: BigInt): Vault {
+  let dexStrategyV4Contract = DexStrategyV4.bind(contractAddress)
+  let vault = Vault.load(contractAddress.toHexString());
+  if (vault == null) {
+    vault = new Vault(contractAddress.toHexString());
+
+    let ownerAddress = dexStrategyV4Contract.owner();
+    let protocol = defineProtocol(ownerAddress);
+    vault.protocol =  protocol.id;
+
+
+  
+  " Tokens that need to be deposited to take a position in protocol. e.g. WETH and USDC to deposit into the WETH-USDC pool "
+  inputTokens: [Token!]!
+
+  " Token that is minted to track ownership of position in protocol "
+  outputToken: Token
+
+  " Aditional tokens that are given as reward for position in a protocol, usually in liquidity mining programs. e.g. SUSHI in the Onsen program, MATIC for Aave Polygon "
+  let rewardTokenAddress = dexStrategyV4Contract.rewardToken();
+  let rewardToken = defineRewardToken(rewardTokenAddress);
+  rewardTokens: [RewardToken!]
+
+
+
+  totalValueLockedUSD: BigDecimal!
+
+  " Total volume in USD "
+  totalVolumeUSD: BigDecimal!
+
+  " Amount of input tokens in the vault. The ordering should be the same as the vault's `inputTokens` field. "
+  inputTokenBalances: [BigInt!]!
+
+  vault.outputTokenSupply = dexStrategyV4Contract.totalSupply();
+
+  " Price per share of output token in USD "
+  outputTokenPriceUSD: BigDecimal!
+
+  " Total amount of reward token emissions in a day, in token's native amount "
+  rewardTokenEmissionsAmount: [BigInt!]
+
+  " Total amount of reward token emissions in a day, normalized to USD "
+  rewardTokenEmissionsUSD: [BigDecimal!]
+  vault.createdTimestamp = timestamp;
+  vault.createdBlockNumber = blockNumber;
+  vault.name = dexStrategyV4Contract.name();
+  vault.symbol = dexStrategyV4Contract.symbol();
+
+  // vault.depositLimit = dexStrategyV4Contract.
+  fees: [VaultFee!]!
+
+  }
+  vault.save()
+
+  return vault
+}
+
+
+
 
 export function handleUpdateAdminFee(event: UpdateAdminFeeEvent): void {
   let farm = createOrLoadFarm(event);
@@ -28,27 +183,6 @@ export function handleUpdateReinvestReward(event: UpdateReinvestRewardEvent): vo
   farm.save();
 }
 
-export function handleDeposit(event: DepositEvent): void {
-  let depositStatus = createOrLoadDepositStatus(event);
-  depositStatus.activeDeposit = depositStatus.activeDeposit.plus(event.params.amount);
-  depositStatus.depositCount = depositStatus.depositCount.plus(BigInt.fromI32(1));
-  depositStatus.totalDeposits = depositStatus.totalDeposits.plus(event.params.amount);
-  depositStatus.save();
-
-  let farm = createOrLoadFarm(event);
-  farm.depositTokenBalance = farm.depositTokenBalance.plus(event.params.amount);
-  farm.save();
-
-  let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
-  let deposit = new Deposit(id);
-  deposit.by = createOrLoadUser(event).id;
-  deposit.farm = farm.id;
-  deposit.amount = event.params.amount;
-  deposit.blockTimestamp = event.block.timestamp;
-  deposit.blockNumber = event.block.number;
-  deposit.transactionHash = event.transaction.hash;
-  deposit.save();
-}
 
 export function handleWithdraw(event: WithdrawEvent): void {
   let depositStatus = createOrLoadDepositStatus(event);

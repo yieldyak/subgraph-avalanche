@@ -26,5 +26,8 @@
     "truffle-contract": "^4.0.5",
     "truffle-hdwallet-provider": "^1.0.4",
     "web3": "^1.5.2"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/yieldyak/subgraph-avalanche.git",
+  "author": "Cuttlas <mohsenbarekati@gmail.com>"
 }

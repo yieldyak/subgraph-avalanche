@@ -512,6 +512,21 @@ export class DexStrategyV4 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBytes());
   }
 
+  PID(): BigInt {
+    let result = super.call("PID", "PID():(uint256)", []);
+
+    return result[0].toBigInt();
+  }
+
+  try_PID(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("PID", "PID():(uint256)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
   REINVEST_REWARD_BIPS(): BigInt {
     let result = super.call(
       "REINVEST_REWARD_BIPS",
@@ -745,6 +760,21 @@ export class DexStrategyV4 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
+  extraToken(): Address {
+    let result = super.call("extraToken", "extraToken():(address)", []);
+
+    return result[0].toAddress();
+  }
+
+  try_extraToken(): ethereum.CallResult<Address> {
+    let result = super.tryCall("extraToken", "extraToken():(address)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
   getDepositTokensForShares(amount: BigInt): BigInt {
     let result = super.call(
       "getDepositTokensForShares",
@@ -886,6 +916,21 @@ export class DexStrategyV4 extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
+  proxy(): Address {
+    let result = super.call("proxy", "proxy():(address)", []);
+
+    return result[0].toAddress();
+  }
+
+  try_proxy(): ethereum.CallResult<Address> {
+    let result = super.tryCall("proxy", "proxy():(address)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
   rewardToken(): Address {
     let result = super.call("rewardToken", "rewardToken():(address)", []);
 
@@ -894,21 +939,6 @@ export class DexStrategyV4 extends ethereum.SmartContract {
 
   try_rewardToken(): ethereum.CallResult<Address> {
     let result = super.tryCall("rewardToken", "rewardToken():(address)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  router(): Address {
-    let result = super.call("router", "router():(address)", []);
-
-    return result[0].toAddress();
-  }
-
-  try_router(): ethereum.CallResult<Address> {
-    let result = super.tryCall("router", "router():(address)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -930,6 +960,52 @@ export class DexStrategyV4 extends ethereum.SmartContract {
     let result = super.tryCall(
       "stakingContract",
       "stakingContract():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  swapPairExtraReward(): Address {
+    let result = super.call(
+      "swapPairExtraReward",
+      "swapPairExtraReward():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_swapPairExtraReward(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "swapPairExtraReward",
+      "swapPairExtraReward():(address)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toAddress());
+  }
+
+  swapPairRewardToken(): Address {
+    let result = super.call(
+      "swapPairRewardToken",
+      "swapPairRewardToken():(address)",
+      []
+    );
+
+    return result[0].toAddress();
+  }
+
+  try_swapPairRewardToken(): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "swapPairRewardToken",
+      "swapPairRewardToken():(address)",
       []
     );
     if (result.reverted) {
@@ -1074,32 +1150,36 @@ export class ConstructorCall__Inputs {
     return this._call.inputValues[2].value.toAddress();
   }
 
-  get _stakingContract(): Address {
+  get _nativeRewardToken(): Address {
     return this._call.inputValues[3].value.toAddress();
   }
 
-  get _router(): Address {
-    return this._call.inputValues[4].value.toAddress();
+  get _swapPairs(): ConstructorCall_swapPairsStruct {
+    return changetype<ConstructorCall_swapPairsStruct>(
+      this._call.inputValues[4].value.toTuple()
+    );
   }
 
-  get _timelock(): Address {
+  get _stakingContract(): Address {
     return this._call.inputValues[5].value.toAddress();
   }
 
-  get _minTokensToReinvest(): BigInt {
+  get _pid(): BigInt {
     return this._call.inputValues[6].value.toBigInt();
   }
 
-  get _adminFeeBips(): BigInt {
-    return this._call.inputValues[7].value.toBigInt();
+  get _voterProxy(): Address {
+    return this._call.inputValues[7].value.toAddress();
   }
 
-  get _devFeeBips(): BigInt {
-    return this._call.inputValues[8].value.toBigInt();
+  get _timelock(): Address {
+    return this._call.inputValues[8].value.toAddress();
   }
 
-  get _reinvestRewardBips(): BigInt {
-    return this._call.inputValues[9].value.toBigInt();
+  get _strategySettings(): ConstructorCall_strategySettingsStruct {
+    return changetype<ConstructorCall_strategySettingsStruct>(
+      this._call.inputValues[9].value.toTuple()
+    );
   }
 }
 
@@ -1108,6 +1188,42 @@ export class ConstructorCall__Outputs {
 
   constructor(call: ConstructorCall) {
     this._call = call;
+  }
+}
+
+export class ConstructorCall_swapPairsStruct extends ethereum.Tuple {
+  get poolReward(): Address {
+    return this[0].toAddress();
+  }
+
+  get extraReward(): Address {
+    return this[1].toAddress();
+  }
+
+  get token0(): Address {
+    return this[2].toAddress();
+  }
+
+  get token1(): Address {
+    return this[3].toAddress();
+  }
+}
+
+export class ConstructorCall_strategySettingsStruct extends ethereum.Tuple {
+  get minTokensToReinvest(): BigInt {
+    return this[0].toBigInt();
+  }
+
+  get adminFeeBips(): BigInt {
+    return this[1].toBigInt();
+  }
+
+  get devFeeBips(): BigInt {
+    return this[2].toBigInt();
+  }
+
+  get reinvestRewardBips(): BigInt {
+    return this[3].toBigInt();
   }
 }
 
@@ -1579,6 +1695,36 @@ export class SetAllowancesCall__Outputs {
   _call: SetAllowancesCall;
 
   constructor(call: SetAllowancesCall) {
+    this._call = call;
+  }
+}
+
+export class SetExtraRewardSwapPairCall extends ethereum.Call {
+  get inputs(): SetExtraRewardSwapPairCall__Inputs {
+    return new SetExtraRewardSwapPairCall__Inputs(this);
+  }
+
+  get outputs(): SetExtraRewardSwapPairCall__Outputs {
+    return new SetExtraRewardSwapPairCall__Outputs(this);
+  }
+}
+
+export class SetExtraRewardSwapPairCall__Inputs {
+  _call: SetExtraRewardSwapPairCall;
+
+  constructor(call: SetExtraRewardSwapPairCall) {
+    this._call = call;
+  }
+
+  get _extraTokenSwapPair(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class SetExtraRewardSwapPairCall__Outputs {
+  _call: SetExtraRewardSwapPairCall;
+
+  constructor(call: SetExtraRewardSwapPairCall) {
     this._call = call;
   }
 }

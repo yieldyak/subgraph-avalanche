@@ -18,12 +18,49 @@
       },
       {
         "internalType": "address",
+        "name": "_nativeRewardToken",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "poolReward",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "extraReward",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "token0",
+            "type": "address"
+          },
+          {
+            "internalType": "address",
+            "name": "token1",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct MasterChefStrategyForLP.SwapPairs",
+        "name": "_swapPairs",
+        "type": "tuple"
+      },
+      {
+        "internalType": "address",
         "name": "_stakingContract",
         "type": "address"
       },
       {
+        "internalType": "uint256",
+        "name": "_pid",
+        "type": "uint256"
+      },
+      {
         "internalType": "address",
-        "name": "_router",
+        "name": "_voterProxy",
         "type": "address"
       },
       {
@@ -32,24 +69,31 @@
         "type": "address"
       },
       {
-        "internalType": "uint256",
-        "name": "_minTokensToReinvest",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_adminFeeBips",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_devFeeBips",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "_reinvestRewardBips",
-        "type": "uint256"
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "minTokensToReinvest",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "adminFeeBips",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "devFeeBips",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "reinvestRewardBips",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct MasterChefStrategy.StrategySettings",
+        "name": "_strategySettings",
+        "type": "tuple"
       }
     ],
     "stateMutability": "nonpayable",
@@ -446,6 +490,19 @@
   },
   {
     "inputs": [],
+    "name": "PID",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
     "name": "REINVEST_REWARD_BIPS",
     "outputs": [
       {
@@ -712,6 +769,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "extraToken",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -864,6 +934,19 @@
     "type": "function"
   },
   {
+    "inputs": [],
+    "name": "proxy",
+    "outputs": [
+      {
+        "internalType": "contract IJoeVoterProxy",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
       {
         "internalType": "uint256",
@@ -972,20 +1055,20 @@
   },
   {
     "inputs": [],
-    "name": "router",
-    "outputs": [
-      {
-        "internalType": "contract IRouter",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
+    "name": "setAllowances",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "setAllowances",
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_extraTokenSwapPair",
+        "type": "address"
+      }
+    ],
+    "name": "setExtraRewardSwapPair",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"
@@ -995,7 +1078,33 @@
     "name": "stakingContract",
     "outputs": [
       {
-        "internalType": "contract IStakingRewards",
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "swapPairExtraReward",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "swapPairRewardToken",
+    "outputs": [
+      {
+        "internalType": "address",
         "name": "",
         "type": "address"
       }
