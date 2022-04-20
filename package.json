@@ -10,7 +10,7 @@
     "build": "graph build",
     "deploy:full": "graph deploy yieldyak/reinvest-tracker --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "deploy-liboutech:light": "graph deploy liboutech/reinvest-light --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "mustache:full": "mustache subgraph_data.json subgraph.yaml.mustache > subgraph.yaml",
+    "mustache:full": "yarn mustache subgraph_data.json subgraph.yaml.mustache > subgraph.yaml",
     "mustache:light": "node mustache.js"
   },
   "devDependencies": {

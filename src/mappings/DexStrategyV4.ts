@@ -1,4 +1,4 @@
-import { Address, BigInt, BigDecimal, ethereum } from '@graphprotocol/graph-ts'
+import { Address, BigInt, BigDecimal, ethereum, bigInt, bigDecimal } from '@graphprotocol/graph-ts'
 import { 
   Deposit as DepositEvent,
   Recovered as RecoveredEvent,
@@ -19,10 +19,14 @@ import { Token
   ,Deposit
   ,Withdraw
   ,Account
-  ,DailyActiveAccount } from '../../generated/schema'
+  ,DailyActiveAccount} from '../../generated/schema'
 
   import { DexStrategyV4 } from "../../generated/DexStrategyV4/DexStrategyV4"
+  import { Token as TokenContract } from "../../generated/x0aBD79f5144a70bFA3E3Aeed183f9e1A4d80A34F/Token"
+  import { YakRouter, YakRouter__findBestPathResultValue0Struct } from "../../generated/x0aBD79f5144a70bFA3E3Aeed183f9e1A4d80A34F/YakRouter"
   
+  import { convertBINumToDesiredDecimals } from "./utils/converters"
+
   export function handleDeposit(event: DepositEvent): void {
 
     let transactionHash = event.transaction.hash;
@@ -44,18 +48,20 @@ import { Token
     let protocol = defineProtocol(ownerAddress);
     deposit.protocol =  protocol.id;
 
-    let token = defineToken(event.transaction.to);
+    let inputTokenAddress = dexStrategyV4Contract.depositToken();
+    let inputToken = defineInputToken(inputTokenAddress);
 
-    deposit.asset = token.id;
+    deposit.asset = inputToken.id;
+    deposit.amountUSD = priceInUSD(dexStrategyV4Contract.depositToken(), event.transaction.value);
 
-  // " Amount of token deposited in USD "
-  // amountUSD: BigDecimal!
+    let vault = defineVault(event.transaction.to, event.block.timestamp, event.block.number,);
 
-    let defineVault = defineVault(event.transaction.to, event.block.timestamp, event.block.number,);
-
-  " The vault involving this transaction "
-  vault: Vault!
+    deposit.vault = vault.id;
     deposit.save();
+
+    let isAccountNew = defineAccount(event.transaction.from);
+    let isDailyAccountNew = defineDailyActiveAccount(event.transaction.from, event.block.timestamp);
+    defineUsageMetricsDailySnapshotEntity(event.block.timestamp,event.block.number,protocol, isAccountNew,isDailyAccountNew);
   }
 
 function defineProtocol(ownerAddress: Address): YieldAggregator {
@@ -77,32 +83,56 @@ function defineProtocol(ownerAddress: Address): YieldAggregator {
   return protocol
 }
 
-function defineToken(contractAddress: Address): Token {
-  let dexStrategyV4Contract = DexStrategyV4.bind(contractAddress)
-  let token = Token.load(contractAddress.toHexString())
+
+
+function defineInputToken(tokenAddress: Address): Token {
+  let avaxAddress: Address = Address.fromString("0x0000000000000000000000000000000000000000");
+  if (tokenAddress == avaxAddress) {
+    tokenAddress = Address.fromString("0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7");
+  }
+  let tokenContract = TokenContract.bind(tokenAddress);
+  let token = Token.load(tokenAddress.toHexString())
   if (token == null) {
-    token = new Token(contractAddress.toHexString())
-    token.name = dexStrategyV4Contract.name();
-    token.symbol = dexStrategyV4Contract.symbol();
-    token.decimals = dexStrategyV4Contract.decimals();
+    token = new Token(tokenAddress.toHexString())
+    token.name = tokenContract.name();
+    token.symbol = tokenContract.symbol();
+    token.decimals = tokenContract.decimals();
   }
   token.save()
 
   return token
 }
 
-function defineToken(contractAddress: Address): Token {
-  let dexStrategyV4Contract = DexStrategyV4.bind(contractAddress)
-  let token = Token.load(contractAddress.toHexString())
+function defineOutputToken(tokenAddress: Address): Token {
+
+  let tokenContract = DexStrategyV4.bind(tokenAddress);
+  let token = Token.load(tokenAddress.toHexString())
   if (token == null) {
-    token = new Token(contractAddress.toHexString())
-    token.name = dexStrategyV4Contract.name();
-    token.symbol = dexStrategyV4Contract.symbol();
-    token.decimals = dexStrategyV4Contract.decimals();
+    token = new Token(tokenAddress.toHexString())
+    token.name = tokenContract.name();
+    token.symbol = tokenContract.symbol();
+    token.decimals = tokenContract.decimals();
   }
   token.save()
 
   return token
+}
+
+
+
+function defineRewardToken(rewardTokenAddress: Address): RewardToken {
+  let rewardTokenContract = TokenContract.bind(rewardTokenAddress);
+  let rewardToken = RewardToken.load(rewardTokenAddress.toHexString())
+  if (rewardToken == null) {
+    rewardToken = new RewardToken(rewardTokenAddress.toHexString())
+    rewardToken.name = rewardTokenContract.name();
+    rewardToken.symbol = rewardTokenContract.symbol();
+    rewardToken.decimals = rewardTokenContract.decimals();
+    rewardToken.type = "DEPOSIT";
+  }
+  rewardToken.save()
+
+  return rewardToken
 }
 
 function defineVault(contractAddress: Address, timestamp: BigInt, blockNumber: BigInt): Vault {
@@ -116,187 +146,114 @@ function defineVault(contractAddress: Address, timestamp: BigInt, blockNumber: B
     vault.protocol =  protocol.id;
 
 
+    let inputTokenAddress = dexStrategyV4Contract.depositToken();
+    let inputToken = defineInputToken(inputTokenAddress);
+    vault.inputTokens.push(inputToken.id)
   
-  " Tokens that need to be deposited to take a position in protocol. e.g. WETH and USDC to deposit into the WETH-USDC pool "
-  inputTokens: [Token!]!
+    let outputToken = defineOutputToken(contractAddress)
+    vault.outputToken = outputToken.id;
 
-  " Token that is minted to track ownership of position in protocol "
-  outputToken: Token
+    let rewardTokenAddress = dexStrategyV4Contract.rewardToken();
+    let rewardToken = defineRewardToken(rewardTokenAddress);
+    vault.rewardTokens.push(rewardToken.id)
 
-  " Aditional tokens that are given as reward for position in a protocol, usually in liquidity mining programs. e.g. SUSHI in the Onsen program, MATIC for Aave Polygon "
-  let rewardTokenAddress = dexStrategyV4Contract.rewardToken();
-  let rewardToken = defineRewardToken(rewardTokenAddress);
-  rewardTokens: [RewardToken!]
+    vault.createdTimestamp = timestamp;
+    vault.createdBlockNumber = blockNumber;
+    vault.name = dexStrategyV4Contract.name();
+    vault.symbol = dexStrategyV4Contract.symbol();
 
 
+  // " Amount of input tokens in the vault. The ordering should be the same as the vault's `inputTokens` field. "
+  // inputTokenBalances: [BigInt!]!
+  // " Total amount of reward token emissions in a day, in token's native amount "
+  // rewardTokenEmissionsAmount: [BigInt!]
+  // " Total amount of reward token emissions in a day, normalized to USD "
+  // rewardTokenEmissionsUSD: [BigDecimal!]
+  
+  let adminFee = new VaultFee(contractAddress.toHexString().concat("-adminFee"));
+  adminFee.feePercentage = convertBINumToDesiredDecimals(dexStrategyV4Contract.ADMIN_FEE_BIPS(),4) ;
+  adminFee.feeType = "PERFORMANCE_FEE"
+  adminFee.save();
+  
+  let developerFee = new VaultFee(contractAddress.toHexString().concat("-adminFee"));
+  developerFee.feePercentage = convertBINumToDesiredDecimals(dexStrategyV4Contract.DEV_FEE_BIPS(),4) ;
+  developerFee.feeType = "PERFORMANCE_FEE"
+  developerFee.save();
 
-  totalValueLockedUSD: BigDecimal!
+  vault.fees.push(adminFee.id);
+  vault.fees.push(developerFee.id);
 
-  " Total volume in USD "
-  totalVolumeUSD: BigDecimal!
-
-  " Amount of input tokens in the vault. The ordering should be the same as the vault's `inputTokens` field. "
-  inputTokenBalances: [BigInt!]!
+  }
 
   vault.outputTokenSupply = dexStrategyV4Contract.totalSupply();
 
   " Price per share of output token in USD "
-  outputTokenPriceUSD: BigDecimal!
+  let depositTokenPrice: BigDecimal = priceInUSD(dexStrategyV4Contract.depositToken(),bigInt.fromString("1000000000000000000"));
+  let getSharesForDepositToken: BigInt = dexStrategyV4Contract.getSharesForDepositTokens(bigInt.fromString("1000000000000000000"));
+  let getSharesForDepositTokenInDecimal: BigDecimal = convertBINumToDesiredDecimals(getSharesForDepositToken, 18);
+  vault.outputTokenPriceUSD = depositTokenPrice.div(getSharesForDepositTokenInDecimal);
 
-  " Total amount of reward token emissions in a day, in token's native amount "
-  rewardTokenEmissionsAmount: [BigInt!]
+  vault.totalValueLockedUSD = depositTokenPrice.times(vault.outputTokenSupply.toBigDecimal());
+  vault.totalVolumeUSD = depositTokenPrice.times(vault.outputTokenSupply.toBigDecimal());
 
-  " Total amount of reward token emissions in a day, normalized to USD "
-  rewardTokenEmissionsUSD: [BigDecimal!]
-  vault.createdTimestamp = timestamp;
-  vault.createdBlockNumber = blockNumber;
-  vault.name = dexStrategyV4Contract.name();
-  vault.symbol = dexStrategyV4Contract.symbol();
 
-  // vault.depositLimit = dexStrategyV4Contract.
-  fees: [VaultFee!]!
-
-  }
   vault.save()
 
   return vault
 }
 
-
-
-
-export function handleUpdateAdminFee(event: UpdateAdminFeeEvent): void {
-  let farm = createOrLoadFarm(event);
-  farm.adminFee = event.params.newValue;
-  farm.save();
+function priceInUSD(tokenAddress: Address, amount: BigInt): BigDecimal {
+  let usdcAddress: Address = Address.fromString("0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E");
+  let avaxAddress: Address = Address.fromString("0x0000000000000000000000000000000000000000");
+  if (tokenAddress == avaxAddress) {
+    tokenAddress = Address.fromString("0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7");
+  }
+  let yakRouterAddress: Address = Address.fromString("0xC4729E56b831d74bBc18797e0e17A295fA77488c");
+  let yakRouter = YakRouter.bind(yakRouterAddress);
+  let tokenPriceInUSDStructure: YakRouter__findBestPathResultValue0Struct = yakRouter.findBestPath(amount,tokenAddress,usdcAddress,bigInt.fromString("2"));
+  let tokenPriceInUSDWithDecimal: BigDecimal = convertBINumToDesiredDecimals(tokenPriceInUSDStructure.amounts[0], 18);
+  return tokenPriceInUSDWithDecimal;
 }
 
-export function handleUpdateDevFee(event: UpdateDevFeeEvent): void {
-  let farm = createOrLoadFarm(event);
-  farm.devFee = event.params.newValue;
-  farm.save();
+function defineAccount(accountAddress: Address): number {
+  let checker = 0;
+  let account = Account.load(accountAddress.toHexString());
+  if (account == null) {
+    account = new Account(accountAddress.toHexString());
+    checker = 1;
+  }
+  return checker;
 }
 
-export function handleUpdateReinvestReward(event: UpdateReinvestRewardEvent): void {
-  let farm = createOrLoadFarm(event);
-  farm.reinvestFee = event.params.newValue;
-  farm.save();
+function defineDailyActiveAccount(accountAddress: Address, timestamp: BigInt): number {
+  let checker = 0;
+  let daysFromStart = timestamp.toI32() / 24 / 60 / 60
+  let account = DailyActiveAccount.load(accountAddress.toHexString().concat("-").concat(daysFromStart.toString()));
+  if (account == null) {
+    account = new DailyActiveAccount(accountAddress.toHexString().concat("-").concat(daysFromStart.toString()));
+    checker = 1;
+  }
+  return checker;
 }
 
-
-export function handleWithdraw(event: WithdrawEvent): void {
-  let depositStatus = createOrLoadDepositStatus(event);
-  if (depositStatus.activeDeposit.lt(event.params.amount)) {
-    depositStatus.activeDeposit = BigInt.fromI32(0);
+function defineUsageMetricsDailySnapshotEntity(
+  timestamp: BigInt,
+  blockNumber: BigInt,
+  protocol: YieldAggregator,
+  isAccountUniqe: number,
+  isDailyAccountUniqe: number,
+): UsageMetricsDailySnapshot {
+  let daysFromStart = timestamp.toI32() / 24 / 60 / 60
+  let usageMetricsDailySnapshotEntity = UsageMetricsDailySnapshot.load(daysFromStart.toString())
+  if (usageMetricsDailySnapshotEntity == null) {
+    usageMetricsDailySnapshotEntity = new UsageMetricsDailySnapshot(daysFromStart.toString())
+    usageMetricsDailySnapshotEntity.timestamp = timestamp
+    usageMetricsDailySnapshotEntity.blockNumber = blockNumber
+    usageMetricsDailySnapshotEntity.protocol = protocol.id
   }
-  else {
-    depositStatus.activeDeposit = depositStatus.activeDeposit.minus(event.params.amount);
-  }
-  depositStatus.withdrawCount = depositStatus.withdrawCount.plus(BigInt.fromI32(1));
-  depositStatus.totalWithdraws = depositStatus.totalWithdraws.plus(event.params.amount);
-  depositStatus.save()
-
-  let farm = createOrLoadFarm(event);
-  farm.depositTokenBalance = farm.depositTokenBalance.minus(event.params.amount);
-  farm.save();
-
-  let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
-  let withdraw = new Withdraw(id);
-  withdraw.by = createOrLoadUser(event).id;
-  withdraw.farm = farm.id;
-  withdraw.amount = event.params.amount;
-  withdraw.blockTimestamp = event.block.timestamp;
-  withdraw.blockNumber = event.block.number;
-  withdraw.transactionHash = event.transaction.hash;
-  withdraw.save();
-}
-
-export function handleReinvest(event: ReinvestEvent): void {
-  let id = event.transaction.hash.toHexString() + "-" + event.transactionLogIndex.toString();
-
-  let farm = createOrLoadFarm(event);
-  farm.reinvestCount = farm.reinvestCount.plus(BigInt.fromI32(1));
-  farm.depositTokenBalance = event.params.newTotalDeposits;
-  farm.save();
-
-  let user = createOrLoadUser(event);
-  user.reinvestCount = user.reinvestCount.plus(BigInt.fromI32(1));
-  user.save();
-
-  let reinvest = new Reinvest(id);
-  reinvest.by = user.id;
-  reinvest.farm = farm.id;
-  reinvest.reinvestCount = farm.reinvestCount;
-  reinvest.blockTimestamp = event.block.timestamp;
-  reinvest.blockNumber = event.block.number;
-  reinvest.totalDeposits = event.params.newTotalDeposits;
-  reinvest.totalSupply = event.params.newTotalSupply;
-  reinvest.transactionHash = event.transaction.hash;
-  if (reinvest.totalDeposits.equals(BigInt.fromI32(0)) || reinvest.totalSupply.equals(BigInt.fromI32(0))) {
-    reinvest.ratio = BigDecimal.fromString("1");
-  }
-  else {
-    reinvest.ratio = reinvest.totalDeposits.divDecimal(BigDecimal.fromString(reinvest.totalSupply.toString()));
-  }
-  reinvest.save();
-}
-
-function createOrLoadFarm(event: ethereum.Event): Farm {
-  let id = event.address.toHexString();
-  let farm = Farm.load(id);
-  if (farm == null) {
-    farm = new Farm(id);
-
-    let farmContract = DexStrategyV4.bind(event.address);
-    farm.name = farmContract.name();
-    farm.depositToken = createOrLoadToken(farmContract.depositToken()).id;
-    farm.rewardToken = createOrLoadToken(farmContract.rewardToken()).id;
-    farm.adminFee = farmContract.ADMIN_FEE_BIPS();
-
-    let devFeeResult = farmContract.try_DEV_FEE_BIPS();
-    farm.devFee = devFeeResult.reverted ? BigInt.fromI32(0) : devFeeResult.value;
-    
-    farm.reinvestFee = farmContract.REINVEST_REWARD_BIPS();
-    farm.reinvestCount = BigInt.fromI32(0);
-    farm.depositTokenBalance = BigInt.fromI32(0);
-  }
-  farm.save();
-  return farm!;
-}
-
-function createOrLoadToken(id: Address): Token {
-  let token = Token.load(id.toHexString());
-  if (token == null) {
-    token = new Token(id.toHexString());
-  }
-  token.save();
-  return token!;
-}
-
-function createOrLoadUser(event: ethereum.Event): User {
-  let id = event.transaction.from.toHexString();
-  let user = User.load(id);
-  if (user == null) {
-    user = new User(id);
-    user.reinvestCount = BigInt.fromI32(0);
-  }
-  user.save();
-  return user!;
-}
-
-function createOrLoadDepositStatus(event: ethereum.Event): DepositStatus {
-  let id = event.transaction.from.toHexString() + "-" + event.address.toHexString();
-  let depositStatus = DepositStatus.load(id);
-  if (depositStatus == null) {
-    depositStatus = new DepositStatus(id);
-    depositStatus.farm = createOrLoadFarm(event).id;
-    depositStatus.user = createOrLoadUser(event).id;
-    depositStatus.activeDeposit = BigInt.fromI32(0);
-    depositStatus.totalDeposits = BigInt.fromI32(0);
-    depositStatus.totalWithdraws = BigInt.fromI32(0);
-    depositStatus.depositCount = BigInt.fromI32(0);
-    depositStatus.withdrawCount = BigInt.fromI32(0);
-  }
-  depositStatus.save();
-  return depositStatus!;
+  usageMetricsDailySnapshotEntity.dailyTransactionCount = usageMetricsDailySnapshotEntity.dailyTransactionCount + 1
+  usageMetricsDailySnapshotEntity.activeUsers = usageMetricsDailySnapshotEntity.activeUsers + isAccountUniqe
+  usageMetricsDailySnapshotEntity.totalUniqueUsers = usageMetricsDailySnapshotEntity.totalUniqueUsers + isDailyAccountUniqe
+  usageMetricsDailySnapshotEntity.save()
+  return usageMetricsDailySnapshotEntity
 }

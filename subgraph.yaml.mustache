@@ -35,8 +35,10 @@ dataSources:
         - Account
         - DailyActiveAccount
       abis:
-        - name: RewardToken
-          file: ./abis/RewardToken.json
+        - name: Token
+          file: ./abis/Token.json
+        - name: YakRouter
+          file: ./abis/YakRouter.json
         - name: {{abi}}
           file: ./abis/{{abi}}.json
       eventHandlers:
