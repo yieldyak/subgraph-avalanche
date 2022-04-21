@@ -1,5 +1,6 @@
 build/
 generated/
+subgraph-avalanche.code-workspace
 subgraph.yml
 
 # Logs
