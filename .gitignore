@@ -1,6 +1,8 @@
 build/
 generated/
-subgraph.yml
+subgraph.yaml
+package-lock.json
+yarn.lock
 
 # Logs
 logs
