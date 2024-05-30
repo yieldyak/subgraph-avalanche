@@ -3,15 +3,18 @@
   "license": "MIT",
   "version": "0.1.0",
   "scripts": {
-    "build-and-deploy:full": "yarn mustache:full && yarn codegen && yarn build && yarn deploy:full",
-    "build-and-deploy:liboutech": "yarn mustache:light && yarn codegen && yarn build && yarn deploy-liboutech:light",
-    "build-contract": "solc contracts/Gravity.sol --abi -o abis --overwrite && solc contracts/Gravity.sol --bin -o bin --overwrite",
+    "build-and-deploy:arbitrum": "yarn mustache:arbitrum && yarn codegen && yarn build && yarn deploy:arbitrum",
+    "build-and-deploy:avalanche": "yarn mustache:avalanche && yarn codegen && yarn build && yarn deploy:avalanche",
+    "build-and-deploy:mantle": "yarn mustache:mantle && yarn codegen && yarn build && yarn deploy:mantle",
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy:full": "graph deploy yieldyak/reinvest-tracker --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy-liboutech:light": "graph deploy liboutech/reinvest-light --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "mustache:full": "mustache subgraph_data.json subgraph.yaml.mustache > subgraph.yaml",
-    "mustache:light": "node mustache.js"
+    "deploy:arbitrum": "graph deploy yieldyak/arbitrum-reinvest-tracker --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "deploy:avalanche": "graph deploy yieldyak/reinvest-tracker --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
+    "deploy:mantle": "graph deploy yieldyak/mantle-reinvest-tracker --ipfs https://subgraph-api.mantle.xyz/ipfs --node https://subgraph-api.mantle.xyz/deploy",
+    "mustache:arbitrum": "mustache config/arbitrum.json subgraph.yaml.mustache > subgraph.yaml",
+    "mustache:avalanche": "mustache config/avalanche.json subgraph.yaml.mustache > subgraph.yaml",
+    "mustache:mantle": "mustache config/mantle.json subgraph.yaml.mustache > subgraph.yaml",
+    "create:mantle": "graph create yieldyak/mantle-reinvest-tracker --node https://subgraph-api.mantle.xyz/deploy"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.29.0",
