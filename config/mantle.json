@@ -1,0 +1,20 @@
+{
+    "network": "mantle",
+    "graft": null,
+    "dataSources": [
+        {
+            "name": "x4373e4a20A274DD23619429464A466604AeC7833",
+            "address": "0x4373e4a20A274DD23619429464A466604AeC7833",
+            "isDexStrategyV4": true,
+            "abi": "DexStrategyV4",
+            "startBlock": 42247677
+        },
+        {
+            "name": "x53290aE04B9AbE6ACd954d581A87C42BfbB3fAF0",
+            "address": "0x53290aE04B9AbE6ACd954d581A87C42BfbB3fAF0",
+            "isDexStrategyV4": true,
+            "abi": "DexStrategyV4",
+            "startBlock": 42236280
+        }
+    ]
+}

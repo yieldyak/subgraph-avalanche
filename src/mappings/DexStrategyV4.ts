@@ -117,7 +117,9 @@ function createOrLoadFarm(event: ethereum.Event): Farm {
     farm.name = farmContract.name();
     farm.depositToken = createOrLoadToken(farmContract.depositToken()).id;
     farm.rewardToken = createOrLoadToken(farmContract.rewardToken()).id;
-    farm.adminFee = farmContract.ADMIN_FEE_BIPS();
+
+    let adminFeeResult = farmContract.try_ADMIN_FEE_BIPS();
+    farm.adminFee = adminFeeResult.reverted ? BigInt.fromI32(0) : adminFeeResult.value;
 
     let devFeeResult = farmContract.try_DEV_FEE_BIPS();
     farm.devFee = devFeeResult.reverted ? BigInt.fromI32(0) : devFeeResult.value;

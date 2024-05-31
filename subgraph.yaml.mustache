@@ -1,18 +1,20 @@
 specVersion: 0.0.4
 description: Yield Yak
+{{#graft}}
 features:
   - grafting
 graft:
-  base: QmbdzboS6nzKisAFJxv3ng1Df85VxxEFUxpN1qaRigaVux
-  block: 13038993
-repository: https://github.com/yieldyak/subgraph
+  base: {{graft.base}}
+  block: {{graft.block}}
+{{/graft}}
+repository: https://github.com/yieldyak/subgraph-avalanche
 schema:
   file: ./schema.graphql
 dataSources:
-  {{#datasources}}
+  {{#dataSources}}
   - kind: ethereum/contract
     name: {{name}}
-    network: avalanche
+    network: {{network}}
     source:
       address: '{{address}}'
       abi: {{abi}}
@@ -57,4 +59,4 @@ dataSources:
           handler: handleUpdateReinvestReward
         {{/isDexStrategyV4}}
       file: ./src/mappings/{{abi}}.ts
-  {{/datasources}}
+  {{/dataSources}}
